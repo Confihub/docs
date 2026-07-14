@@ -1,0 +1,71 @@
+---
+title: "Supported wallets"
+description: "Choose a Stellar testnet wallet that can sign transactions and deterministic messages."
+icon: "wallet-cards"
+---
+
+Confi.cash needs a Stellar wallet that can sign testnet transactions and messages. Message signing derives your shielded identity, so deterministic signature behavior is essential for recovery.
+
+## Recommended starting point
+
+Use **Freighter** for your first testnet session. Confi.cash supports the Freighter browser extension and a Freighter Mobile connection path when the mobile service is available.
+
+The connection menu also includes:
+
+- xBull
+- Albedo
+- Rabet
+- Hana
+- LOBSTR
+
+Availability depends on your browser, device, wallet version, and the signing methods exposed by that wallet.
+
+<Warning>
+  A wallet can connect successfully but still be unsuitable if it returns a different signature for the same recovery message. Run the recovery check before relying on a shielded balance.
+</Warning>
+
+## Verify recovery behavior
+
+<Steps>
+  <Step title="Connect one account">
+    Connect the public Stellar testnet account you plan to use with Confi.cash.
+  </Step>
+
+  <Step title="Open your shielded identity">
+    Find the shielded identity card and choose **Verify key recovery**.
+  </Step>
+
+  <Step title="Approve both message requests">
+    The app asks the wallet to sign the same application- and network-bound message twice.
+  </Step>
+
+  <Step title="Check the result">
+    Continue only if the app confirms that both signatures recover the same shielded keys.
+  </Step>
+</Steps>
+
+## Account switching
+
+Each connected public wallet account derives a different shielded identity. If you switch from one `G...` account to another, the app should show a different shielded balance.
+
+To recover an earlier balance, reconnect the exact wallet account that created it and approve the same shielded-identity message.
+
+## Common connection problems
+
+<AccordionGroup>
+  <Accordion title="The wallet is not available">
+    Install or enable the wallet for the current browser, then refresh Confi.cash. On mobile, confirm that the wallet's in-app browser and connection service are available.
+  </Accordion>
+
+  <Accordion title="The connected address is not the signing address">
+    Reconnect the intended account. Confi.cash rejects a signature when the wallet reports a different signer than the account shown in the app.
+  </Accordion>
+
+  <Accordion title="Message signing fails">
+    Confirm that your wallet supports message signing on Stellar testnet. Try the current Freighter release if another connector cannot complete the recovery check.
+  </Accordion>
+
+  <Accordion title="I declined the request">
+    Reconnect or select the explicit unlock action to retry. Confi.cash does not repeatedly reopen a declined signing request automatically.
+  </Accordion>
+</AccordionGroup>

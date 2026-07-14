@@ -1,0 +1,43 @@
+---
+title: "Cash out to Stellar"
+description: "Withdraw a standard amount from your shielded balance to a public Stellar address."
+icon: "arrow-up-right"
+---
+
+Cash out moves value from a shielded note to a public Stellar `G...` address. Confi.cash can return the unused portion to you as shielded change.
+
+<Warning>
+  A withdrawal is public. The recipient address, asset, and withdrawn amount are visible on-chain. Reusing an address can link multiple exits.
+</Warning>
+
+## Withdraw to a public address
+
+<Steps>
+  <Step title="Open Cash out">
+    Select **Cash out** from the home screen.
+  </Step>
+
+  <Step title="Choose an asset and amount">
+    Select one of the standard amounts your current notes can cover. The app shows any protocol fee and the shielded change you will keep.
+  </Step>
+
+  <Step title="Enter the recipient">
+    Paste a valid public Stellar `G...` address. The app warns if you enter your connected wallet or an address used for an earlier withdrawal.
+  </Step>
+
+  <Step title="Review the privacy checks">
+    Confirm that the exit amount becomes public and that address reuse can link activity.
+  </Step>
+
+  <Step title="Prove and relay">
+    Click **Withdraw to a public address**. Your browser generates a proof that binds the recipient and amount. The relayer submits it without requiring a wallet transaction signature.
+  </Step>
+</Steps>
+
+## Shielded change
+
+If your selected note is larger than the withdrawal and fee, Confi.cash creates a new shielded change note. Only the standard amount sent to the public address crosses the boundary.
+
+<Tip>
+  Swapping into a different asset before withdrawing can reduce a direct same-asset link, but it does not make the withdrawal anonymous. The destination and exit amount remain public.
+</Tip>

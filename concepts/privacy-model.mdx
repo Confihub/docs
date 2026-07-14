@@ -1,0 +1,64 @@
+---
+title: "Privacy model"
+description: "Understand what Confi.cash hides, what remains public, and which parties you must trust."
+icon: "eye-off"
+---
+
+Confi.cash provides amount confidentiality against public chain observers while value stays inside its shielded pool. Privacy depends on where you are in the flow and which observer you are considering.
+
+<Info>
+  “Private” in these docs means a specific fact is hidden from a named observer. It does not mean the entire transaction is invisible or anonymous.
+</Info>
+
+## Visibility by observer
+
+| Observer | What they can see | What they do not normally receive |
+| --- | --- | --- |
+| Public chain observer | Activity, timing, deposit and withdrawal boundaries, clearing price, and routed batch net | Shielded balances, note ownership, shielded-send amounts, and individual batched swap legs |
+| Ordinary relay path | Requests, timing, and the public proof statement | Spend keys, note openings, and plaintext amounts for the active amount-blind batch path |
+| Confi.cash operator | Network metadata and all infrastructure it operates | No promise applies against quorum-level administrative access; Confi.cash can reconstruct individual swap amounts through its threshold committee |
+| Shielded recipient | The asset and amount in the note they can decrypt | Your public wallet address is not encoded as the shielded recipient |
+| Liquidity venue, such as Soroswap or Aquarius | The public batch net, route, and settlement price | The individual orders that formed a correctly batched net |
+| Offramp anchor | Payout identity, destination, amount, and session status | Your spend key and shielded note opening |
+
+## Hidden from chain observers
+
+- Your current shielded balance.
+- Which commitment in the pool belongs to you.
+- The amount transferred in a shielded send.
+- The individual amount of an amount-blind batched swap.
+- The direct input-to-output link between correctly formed shielded actions.
+
+## Public by design
+
+- The public Stellar address, asset, and amount used for a deposit.
+- The public Stellar recipient, asset, and amount used for a withdrawal.
+- The existence and timing of pool activity.
+- The clearing price and aggregate net routed to a liquidity venue.
+- The exact input and output implied by a one-order solo settlement.
+
+## The threshold trust boundary
+
+The active swap path encrypts each amount in the browser and sends a proof-bound commitment to the relay. Ordinary relay intake and application logs do not need the plaintext amount to form a batch.
+
+Confi.cash currently operates the threshold committee. Enough committee access can reconstruct an individual amount. The committee reduces exposure in ordinary application paths and limits a single-host compromise, but it does not create privacy from Confi.cash as an organization.
+
+<Warning>
+  Do not treat “amount-blind relay intake” as “the operator can never learn the amount.” The current trust model is single-organization.
+</Warning>
+
+## Network metadata
+
+Zero-knowledge proofs do not hide your network connection. The service operator can observe your IP address, request timing, browser traffic patterns, and the sequence of actions sent to its endpoints.
+
+Spacing actions or changing network paths may reduce simple timing links. These measures do not create a cryptographic guarantee and are not included in the app's confidentiality score.
+
+## Confidentiality score
+
+The score is a user-facing estimate, not a proof of anonymity. It considers factors such as real pool participation, batches, dwell, and use of standard denominations. Operator-controlled padding does not count as another real participant.
+
+A stronger score means the observed pattern is less distinctive under the model. It does not account for a compromised browser, wallet behavior, network surveillance, committee-level access, or information you reveal to a recipient or anchor.
+
+## Boundaries cannot be undone
+
+Once a deposit or withdrawal appears on-chain, later shielding cannot remove that event. Re-shielding, waiting, batching, fresh addresses, and asset changes can reduce some links. They cannot make a public boundary disappear.

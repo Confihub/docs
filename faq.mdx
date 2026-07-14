@@ -1,0 +1,59 @@
+---
+title: "Frequently asked questions"
+description: "Answers about testnet use, shielded identities, privacy, recovery, and swaps."
+icon: "circle-help"
+---
+
+<AccordionGroup>
+  <Accordion title="Is Confi.cash anonymous?">
+    No. Confi.cash hides specific amounts and links from public chain observers while value remains shielded. Deposits, withdrawals, activity timing, and batch net movement remain public. Network metadata and committee-level access create additional trust boundaries.
+  </Accordion>
+
+  <Accordion title="Can I use real money?">
+    No. Confi.cash is an experimental Stellar testnet proof of concept and has not been independently audited. Use testnet assets with no monetary value.
+  </Accordion>
+
+  <Accordion title="Why does Confi.cash ask me to sign a message?">
+    The app uses a wallet signature to derive your shielded identity in the browser. This is not a transaction and does not spend funds. The same wallet account and deterministic signature behavior are required to recover the same identity.
+  </Accordion>
+
+  <Accordion title="What is a cb1 address?">
+    A `cb1...` address is a Confi.cash shielded receive address. Use it for shielded sends. It is not a public Stellar `G...` address and cannot receive an ordinary Stellar payment directly.
+  </Accordion>
+
+  <Accordion title="Can I use Confi.cash to swap through Soroswap or Aquarius?">
+    Yes, on supported testnet routes. Open **Swap** and choose **Others** to access Soroswap, Aquarius, and other supported external AMMs. Confi.cash batches eligible shielded orders and routes only the combined net to the selected AMM. Your proceeds return as a fresh shielded note.
+  </Accordion>
+
+  <Accordion title="What does Others mean in the Swap screen?">
+    **Others** is the external-liquidity section. It groups Soroswap, Aquarius, and other supported AMM routes. It changes where the batch net settles; it is not a separate privacy mode.
+  </Accordion>
+
+  <Accordion title="Can Confi.cash learn my swap amount?">
+    The active amount-blind path encrypts the amount before ordinary relay intake, so plaintext amounts are not required in the normal relay path or application logs. Confi.cash operates the threshold committee and can reconstruct individual amounts with quorum-level administrative access. The system does not promise privacy from Confi.cash itself.
+  </Accordion>
+
+  <Accordion title="Why can I choose only certain amounts?">
+    Standard denominations reduce amount fingerprinting at public deposit and withdrawal boundaries. Sends and swaps also spend whole notes, so the app presents amounts that correspond to notes you hold.
+  </Accordion>
+
+  <Accordion title="Why is my swap waiting?">
+    A confidential batch needs another eligible order and the required settlement services. Your app may also wait for a shared privacy anchor. Check the status card rather than submitting the same note again.
+  </Accordion>
+
+  <Accordion title="What does solo settlement mean?">
+    Solo settlement executes your order as a one-order batch. Its exact input and output can be inferred from the public batch totals. Use it only after accepting the app's public-amount warning.
+  </Accordion>
+
+  <Accordion title="Why has my balance not updated?">
+    Your browser reconstructs the shielded balance by scanning pool events. Wait for the transaction to become final, then use **Rescan**. Do not repeat a deposit, claim, or withdrawal while its earlier status is uncertain.
+  </Accordion>
+
+  <Accordion title="What happens if I switch wallet accounts?">
+    Each public `G...` account derives a different shielded identity. Reconnect the exact account used originally to recover its shielded balance.
+  </Accordion>
+
+  <Accordion title="Has Confi.cash been audited?">
+    It has undergone internal security and adversarial review, but it has not been independently audited. Do not interpret test coverage, ceremonies, frozen contracts, or operational checks as an independent audit.
+  </Accordion>
+</AccordionGroup>

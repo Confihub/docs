@@ -1,0 +1,78 @@
+---
+title: "Swap through Stellar AMMs"
+description: "Use Confi.cash to swap through Soroswap, Aquarius, and other supported AMMs from a shielded balance."
+icon: "arrow-right-left"
+---
+
+Confi.cash lets you access **Soroswap**, **Aquarius**, and other supported Stellar AMMs from a shielded balance. You choose the external liquidity in **Others**, submit an amount-blind order, and receive the result as a fresh shielded note.
+
+The selected AMM receives the aggregate batch net. It does not receive your individual shielded order as a standalone swap.
+
+<Warning>
+  The amount-blind batch path does not send your plaintext amount to ordinary relay intake. Confi.cash operates the threshold committee and can reconstruct individual amounts with quorum-level administrative access. This is not privacy from Confi.cash itself.
+</Warning>
+
+## Why use Confi.cash with external AMMs
+
+- Access Soroswap, Aquarius, and other supported AMM routes from one shielded balance.
+- Keep your individual batched order amount hidden from public chain observers.
+- Send only the combined batch net to the selected external AMM.
+- Receive the result as a new shielded note instead of automatically withdrawing to a public wallet.
+- Use the same shielded-note and amount-blind batch mechanism across supported venues.
+
+## Choose the AMM liquidity
+
+| App option | Liquidity source | Public settlement |
+| --- | --- | --- |
+| **Confiswap** | Confi.cash's internal testnet AMM | The batch net settles on Confiswap |
+| **Others** | **Soroswap**, **Aquarius**, and other supported external AMMs | The batch net settles on the selected external AMM |
+
+<Info>
+  Choose **Others** when you want to swap through Soroswap, Aquarius, or another external AMM. **Others is a liquidity choice, not a privacy mode.**
+</Info>
+
+## Swap through Soroswap, Aquarius, or another AMM
+
+<Steps>
+  <Step title="Open Swap">
+    Select **Swap**, then choose **Others** to use external AMM liquidity.
+  </Step>
+
+  <Step title="Choose a Soroswap, Aquarius, or other AMM route">
+    Select the asset you want to sell and the asset you want to receive. Confi.cash shows routes currently available through Soroswap, Aquarius, and other supported AMMs.
+  </Step>
+
+  <Step title="Choose a note">
+    Pick one of your available shielded notes. A swap spends the whole selected note.
+  </Step>
+
+  <Step title="Review the quote">
+    Check the estimated output, price impact, minimum received, and **Settles on** venue. Confirm that it names the external AMM you intend to use. The output stays shielded.
+  </Step>
+
+  <Step title="Choose the privacy timing">
+    Use **Wait** when you want the order to join a later shared batch. Use **Trade now** only after reading the reduced-privacy warning shown by the app.
+  </Step>
+
+  <Step title="Generate and submit the proof">
+    Click **Join confidential batch** and keep the page open while the browser proves the order. The order may remain queued until enough eligible orders are available. Only the resulting batch net is routed to the selected AMM.
+  </Step>
+</Steps>
+
+## While an order is queued
+
+- Your note remains protected by the order protocol until settlement.
+- The status screen tells you whether the order is aging, waiting for traders, or settling.
+- If **Cancel · keep my note** is available, use it before starting another swap with the same note.
+- Do not assume an interrupted browser request means the order failed. Reopen the app and check its status.
+
+## Batched and solo settlement
+
+| Mode | What the chain sees | Privacy consequence |
+| --- | --- | --- |
+| Batched through Soroswap, Aquarius, or another AMM | The clearing price and combined batch net routed to that AMM | Your individual leg is hidden from chain observers; the threshold operator can reconstruct it with quorum access |
+| Solo | Your order becomes the batch net | Your individual amount and direction become inferable from the public settlement |
+
+<Info>
+  Operator padding can help a batch execute, but it does not add real counterparties to your anonymity set. The app's confidentiality score excludes operator-controlled notes.
+</Info>

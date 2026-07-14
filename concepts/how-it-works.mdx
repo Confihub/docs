@@ -1,0 +1,77 @@
+---
+title: "How Confi.cash works"
+description: "Follow a testnet asset through shielded notes, browser proofs, batch settlement, and withdrawal."
+icon: "blocks"
+---
+
+Confi.cash provides a shielded layer for accessing Stellar liquidity, including **Soroswap**, **Aquarius**, and other supported AMMs. Value stays in encrypted notes before and after the swap. Your browser owns the note secrets and proves valid state changes without sending those secrets to the relay.
+
+## The lifecycle of value
+
+<Steps>
+  <Step title="A public deposit creates a note">
+    Your Stellar wallet signs a transaction that moves a standard testnet amount into the pool. Your browser creates the note commitment and encrypts the note for your shielded identity.
+
+    The deposit boundary is public. The note's later ownership is not displayed beside your public wallet.
+  </Step>
+
+  <Step title="Your browser scans for your notes">
+    Confi.cash reads public pool events and tries to decrypt note payloads locally. Notes that decrypt under your shielded keys form the balance shown in the app.
+
+    The service does not need a server-side account balance database for your shielded identity.
+  </Step>
+
+  <Step title="A proof authorizes a spend">
+    To send, swap, or withdraw, your browser proves that you own an unspent note and that the value rules hold. The proof reveals only the public statement required by that action.
+
+    A nullifier marks the old note spent without publishing its secret opening.
+  </Step>
+
+  <Step title="A send creates a recipient note">
+    For a shielded send, your browser encrypts a fresh note to the recipient's `cb1...` address. The recipient discovers it during their next scan.
+  </Step>
+
+  <Step title="A swap joins an amount-blind batch for an AMM route">
+    Your browser commits to the order and encrypts its amount for the threshold committee. The ordinary relay path receives no plaintext amount.
+
+    When you choose **Others**, the route uses Soroswap, Aquarius, or another supported external AMM. A valid batch settles at a shared price, and only its aggregate net reaches that AMM. You later claim a fresh shielded output note.
+  </Step>
+
+  <Step title="A withdrawal crosses back to public Stellar">
+    Your browser proves a standard withdrawal amount and binds it to a public `G...` recipient. Any remaining value can return as a shielded change note.
+
+    The withdrawal recipient, asset, and amount are public.
+  </Step>
+</Steps>
+
+## Core building blocks
+
+<Columns cols={2}>
+  <Card title="Shielded notes" icon="file-lock-2">
+    Encrypted records that hold an asset, amount, and ownership secret inside the pool.
+  </Card>
+
+  <Card title="Commitments" icon="fingerprint">
+    Public identifiers that let the pool track notes without publishing their openings.
+  </Card>
+
+  <Card title="Nullifiers" icon="ban">
+    One-time values that prevent a note from being spent twice without naming its owner.
+  </Card>
+
+  <Card title="Zero-knowledge proofs" icon="badge-check">
+    Browser-generated proofs that a state transition follows the protocol rules.
+  </Card>
+</Columns>
+
+## Non-custodial does not mean trust-free
+
+Confi.cash does not hold your spend keys or approve spends on your behalf. You still rely on:
+
+- Your wallet to produce the same valid signature when recovering your shielded identity.
+- The browser application and proving artifacts to match the reviewed deployment.
+- The operator for service availability and correct batch operation.
+- The operator-controlled threshold committee not to use quorum access to reconstruct individual swap amounts.
+- Stellar testnet and the deployed contracts to remain available.
+
+Read the [privacy model](/concepts/privacy-model) before treating any action as confidential.
