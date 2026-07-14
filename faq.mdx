@@ -22,7 +22,7 @@ icon: "circle-help"
   </Accordion>
 
   <Accordion title="Can I use Confi.cash to swap through Soroswap or Aquarius?">
-    Yes, on supported testnet routes. Open **Swap** and choose **Others** to access Soroswap, Aquarius, and other supported external AMMs. Confi.cash batches eligible shielded orders and routes only the combined net to the selected AMM. Your proceeds return as a fresh shielded note.
+    Yes, on supported testnet routes. Open **Swap** and choose **Others** to access Soroswap, Aquarius, and other supported external AMMs. In shared settlement, Confi.cash routes only the combined net to the selected AMM. Your proceeds return as a fresh shielded note. In solo settlement, your order is the public batch net.
   </Accordion>
 
   <Accordion title="What does Others mean in the Swap screen?">
@@ -38,7 +38,7 @@ icon: "circle-help"
   </Accordion>
 
   <Accordion title="Why is my swap waiting?">
-    A confidential batch needs another eligible order and the required settlement services. Your app may also wait for a shared privacy anchor. Check the status card rather than submitting the same note again.
+    The app is waiting for the shared privacy anchor, other eligible activity, or required settlement services. Operator padding may help a batch execute, but it does not add another real participant or improve your anonymity set. Check the status card rather than submitting the same note again.
   </Accordion>
 
   <Accordion title="What does solo settlement mean?">
@@ -54,6 +54,6 @@ icon: "circle-help"
   </Accordion>
 
   <Accordion title="Has Confi.cash been audited?">
-    It has undergone internal security and adversarial review, but it has not been independently audited. Do not interpret test coverage, ceremonies, frozen contracts, or operational checks as an independent audit.
+    No. Confi.cash has not been independently audited. Internal testing, review, ceremonies, frozen contracts, and operational checks are not substitutes for an independent audit.
   </Accordion>
 </AccordionGroup>

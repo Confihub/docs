@@ -1,11 +1,11 @@
 ---
 title: "Introduction to Confi.cash"
 sidebarTitle: "Introduction"
-description: "Learn how Confi.cash adds shielded balances, transfers, batch swaps, and compliant payout flows to Stellar."
+description: "Learn how Confi.cash adds shielded balances, shared batch swaps, and a simulated anchor payout flow to Stellar testnet."
 icon: "shield"
 ---
 
-Confi.cash is a non-custodial privacy protocol on Stellar. It lets you shield assets, transfer or batch-swap them with individual amounts and links hidden from public chain observers, then withdraw to a Stellar wallet or fund a compliant payout without publishing your complete prior wallet activity.
+Confi.cash is a non-custodial privacy protocol on Stellar. It lets you shield assets, transfer them, and join shared batch swaps. When a batch includes other real orders, your individual amount is not directly published to public chain observers. You can later withdraw to a Stellar wallet or test an anchor payout flow without the protocol placing a direct record of your complete shielded history on-chain. Public amounts and timing can still support inference.
 
 <Warning>
   Confi.cash is an experimental testnet proof of concept. Do not use real funds. It has not been independently audited.
@@ -25,15 +25,15 @@ Stellar AMMs provide liquidity and price execution. They do not create a shielde
   </Card>
 
   <Card title="Swap through Stellar AMMs" icon="arrow-right-left" href="/guides/swap">
-    Batch-swap through **Soroswap**, **Aquarius**, and other supported AMMs while only the aggregate net flow reaches public liquidity.
+    In a shared batch, swap through **Soroswap**, **Aquarius**, and other supported AMMs while only the aggregate net flow reaches public liquidity.
   </Card>
 
   <Card title="Withdraw to Stellar" icon="wallet-cards" href="/guides/cash-out">
     Move a standard amount from the shielded pool to a public Stellar wallet when you need on-chain funds.
   </Card>
 
-  <Card title="Fund a compliant payout" icon="building-2" href="/guides/offramp">
-    Use a shielded balance to fund an anchor payout flow without exposing your complete prior wallet and swap history to the public chain.
+  <Card title="Test an anchor payout flow" icon="building-2" href="/guides/offramp">
+    Explore a mock testnet flow that shows how a shielded balance could fund a compliant payout without publishing a direct history link on-chain.
   </Card>
 </Columns>
 
@@ -41,28 +41,28 @@ Stellar AMMs provide liquidity and price execution. They do not create a shielde
 
 Your browser creates the proofs and secrets needed to control your shielded notes. Soroban contracts verify note ownership, value conservation, nullifier freshness, valid batch clearing, and withdrawals without receiving your spend key.
 
-For a swap, Confi.cash groups eligible shielded orders and clears them at a shared batch price. Only the aggregate net flow is routed through an adapter to the selected public AMM. When you choose **Others** in the app, that external liquidity can come from **Soroswap**, **Aquarius**, or another supported Stellar AMM. Your proceeds return as a fresh shielded note.
+For a shared swap, Confi.cash groups eligible shielded orders and clears them at a shared batch price. Only the aggregate net flow is routed through an adapter to the selected public AMM. When you choose **Others** in the app, that external liquidity can come from **Soroswap**, **Aquarius**, or another supported Stellar AMM. Your proceeds return as a fresh shielded note. In solo settlement, your order is the batch net and becomes inferable from public settlement.
 
 <Info>
   **Others** is a liquidity-route choice, not a separate privacy mode. The same batch privacy boundaries apply to every supported external AMM route.
 </Info>
 
-## Compliant payouts
+## How a compliant payout can work
 
-The same shielded balance can fund an individual payout through a regulated Stellar anchor. The anchor performs the identity and destination checks required for its payout rail, then delivers fiat, mobile money, or another supported form of value.
+In a production integration, the same shielded balance could fund an individual payout through a regulated Stellar anchor. The anchor would perform the identity and destination checks required for its payout rail, then deliver fiat, mobile money, or another supported form of value.
 
-The public chain sees a withdrawal from the shielded pool to a destination assigned for that payout session. It does not receive a direct record of your internal transfers or individual swap history. The anchor still sees your identity, payout amount, destination, and session details, and public timing or amount correlation may reveal additional links.
+In that production flow, the public chain would see a withdrawal from the shielded pool to a destination assigned for the payout session. It would not receive a direct record of your internal transfers or individual swap history. The production anchor would still see your verified identity, payout amount, destination, and session details, and public timing or amount correlation could reveal additional links.
 
-The current Confi.cash offramp is a testnet simulation. It does not deliver real fiat.
+The current Confi.cash offramp is a testnet simulation. Its mock anchor receives simulated identity data and does not deliver real fiat.
 
 ## The privacy boundary
 
-Confi.cash is designed to hide shielded balances, internal transfer amounts, and individual batched swap legs from public chain observers. It does not make activity invisible.
+Confi.cash is designed to keep shielded balances and internal transfer amounts from being directly published to public chain observers. An individual swap leg is not directly published when a shared batch contains other real orders. Timing, boundary amounts, and the public batch net can still support inference.
 
 - Deposits and withdrawals remain public, including their asset and amount.
 - The chain records batch timing, clearing price, and aggregate net flow.
 - A solo swap makes the individual order equal to the public batch net.
-- The operator can observe network metadata such as IP address and timing.
+- The operator can observe network metadata such as IP address and timing and associate a request with the public pool action it relays.
 - Confi.cash operates the threshold committee and can reconstruct individual swap amounts with quorum-level administrative access.
 
 Read the [privacy model](/concepts/privacy-model) for the guarantees and trust assumptions for each participant.

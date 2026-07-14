@@ -56,5 +56,6 @@ Do not document:
 - State that deposit and withdrawal boundaries are public.
 - State that the active amount-blind path does not send plaintext amounts to ordinary relay intake or application logs.
 - State that Confi.cash operates enough threshold-committee infrastructure to reconstruct individual swap amounts with quorum-level administrative access. Never claim privacy from Confi.cash itself.
-- State that network metadata such as IP address and timing can still be observed by the service operator.
-- Distinguish batched swaps from solo settlement; solo settlement makes the individual amount the public net.
+- State that network metadata such as IP address and timing can still be observed by the service operator, which can associate a request with the public action it relays.
+- Distinguish a shared batch containing other real orders from solo settlement and operator-only padding. Solo settlement makes the individual amount the public net, and operator padding does not add a real participant.
+- Describe the current offramp as a mock testnet simulation. Use conditional language for production anchors, verified identity, and real payouts.

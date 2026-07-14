@@ -36,11 +36,13 @@ The Confi.cash offramp demonstrates how a shielded balance can fund a payout thr
 
 ## What the anchor can see
 
+The current mock anchor receives:
+
 - The amount and asset crossing the public withdrawal boundary.
-- The payout destination and the identity used for its verification flow.
+- The payout destination and simulated identity data used in the test verification flow.
 - The timing and status of the payout session.
 
-The anchor can connect these details because regulated payout providers need to identify their customers. Shielding the funding path does not hide the payout from the anchor.
+A production regulated payout provider would need to identify its customer and could connect these details. The current mock anchor uses simulated identity data, but shielding the funding path still does not hide the test payout from that anchor service.
 
 <Info>
   If the simulated payout fails, the app may offer a private refund claim. Follow the on-screen recovery state and avoid starting a second claim for the same session.
