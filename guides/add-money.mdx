@@ -1,0 +1,57 @@
+---
+title: "Add money"
+description: "Move a standard testnet amount from a public Stellar wallet into your shielded balance."
+icon: "circle-plus"
+---
+
+Adding money creates a shielded note that you control. Your wallet signs the deposit, and your browser generates the zero-knowledge proof.
+
+<Warning>
+  A deposit is a public boundary. Your public Stellar address, asset, and deposit amount are visible on-chain.
+</Warning>
+
+## Before you begin
+
+- Connect a supported wallet to Stellar testnet.
+- Unlock your shielded balance by approving the message-signing request.
+- Hold enough of a supported test asset in your public wallet.
+- Leave enough testnet XLM available for wallet-level network requirements.
+
+## Add a shielded balance
+
+<Steps>
+  <Step title="Open Add money">
+    From the Confi.cash home screen, select **Add**.
+  </Step>
+
+  <Step title="Choose an asset">
+    Select the test asset you want to shield. Your public wallet balance appears beside each available asset.
+  </Step>
+
+  <Step title="Choose a standard amount">
+    Select one of the available amount chips. Confi.cash uses standard deposit amounts so a unique amount does not single out your deposit.
+  </Step>
+
+  <Step title="Generate the proof">
+    Click **Deposit & shield**. Keep the page open while your browser reads the pool and generates the proof.
+  </Step>
+
+  <Step title="Approve the transaction">
+    Review the asset, amount, and Confi.cash pool in your wallet. Approve the transaction only if they match your selection.
+  </Step>
+
+  <Step title="Wait for confirmation">
+    After the transaction confirms, the app displays **Deposited into your private balance**. Your new note appears on the home screen.
+  </Step>
+</Steps>
+
+## What changes after a deposit
+
+- The deposit stays visible in the Stellar testnet history.
+- Your new note is associated with your shielded identity, not displayed beside your public address.
+- Later shielded sends and batched swaps spend the note without publishing its individual amount.
+- More pool activity and time between actions can make links harder to infer, but cannot erase the public deposit.
+
+<Tip>
+  If the transaction confirmed but your balance has not updated, return home and select **Rescan**. Do not submit the same deposit again while its status is uncertain.
+</Tip>

@@ -1,0 +1,55 @@
+---
+title: "Send privately"
+description: "Transfer a shielded note to another Confi.cash shielded address."
+icon: "send"
+---
+
+A shielded send moves one of your notes to another Confi.cash user. The recipient gets a fresh note, and the transfer amount is hidden from chain observers.
+
+## What you need
+
+- A shielded balance in the asset you want to send.
+- The recipient's `cb1...` shielded address.
+- An available amount shown in the **Send** panel.
+
+<Info>
+  A `cb1...` shielded address is different from a public Stellar `G...` address. Use **Cash out** when you need to pay a public Stellar address.
+</Info>
+
+## Send a shielded note
+
+<Steps>
+  <Step title="Ask for a shielded address">
+    The recipient opens their shielded identity card in Confi.cash and copies a `cb1...` address.
+  </Step>
+
+  <Step title="Open Send">
+    Select **Send** from the home screen.
+  </Step>
+
+  <Step title="Enter the recipient">
+    Paste the recipient's complete `cb1...` address. Confi.cash rejects a public address or one of your own shielded addresses.
+  </Step>
+
+  <Step title="Choose an available note">
+    Select the asset and amount. A send spends one whole note, so the available chips reflect notes you currently hold.
+  </Step>
+
+  <Step title="Prove and relay">
+    Click **Send shielded**. Your browser generates the proof and encrypts the new note for the recipient. The relayer submits it without receiving your spend key.
+  </Step>
+</Steps>
+
+<Check>
+  When the app displays **Sent confidentially**, the recipient can rescan and see the note in their shielded balance.
+</Check>
+
+## What each party can see
+
+- Chain observers see that a valid pool action happened, but not the transferred amount or the recipient's public Stellar address.
+- The recipient can decrypt the note and see the asset and amount they received.
+- The service operator can observe request metadata such as IP address and timing.
+
+<Warning>
+  Verify a shielded address through a trusted channel. A valid proof cannot recover a note sent to the wrong `cb1...` address.
+</Warning>

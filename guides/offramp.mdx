@@ -1,0 +1,47 @@
+---
+title: "Test the offramp"
+description: "Try the testnet SEP-24 payout flow and understand what an offramp anchor learns."
+icon: "banknote"
+---
+
+The Confi.cash offramp demonstrates how a shielded balance can fund a payout through a Stellar anchor. The current flow is a testnet simulation and does not deliver real fiat.
+
+<Warning>
+  Identity verification and payouts are simulated on testnet. Do not enter real identity documents, bank credentials, or other sensitive personal data.
+</Warning>
+
+## Test the flow
+
+<Steps>
+  <Step title="Open Offramp">
+    Select **Offramp**. This action appears only when the deployment reports an available test anchor.
+  </Step>
+
+  <Step title="Choose a payout route">
+    Review the anchor, its stated coverage, payout method, asset, and amount.
+  </Step>
+
+  <Step title="Complete simulated verification">
+    Confi.cash sends you to the anchor's hosted test page. Complete only the simulated fields presented by the test flow.
+  </Step>
+
+  <Step title="Review the destination">
+    The anchor returns a destination assigned to this payout session. Confi.cash uses it to associate the on-chain payment with the test payout.
+  </Step>
+
+  <Step title="Approve the shielded withdrawal">
+    Your browser proves the withdrawal and the relayer submits it. Follow the status in Confi.cash until the test anchor marks the payout complete or failed.
+  </Step>
+</Steps>
+
+## What the anchor can see
+
+- The amount and asset crossing the public withdrawal boundary.
+- The payout destination and the identity used for its verification flow.
+- The timing and status of the payout session.
+
+The anchor can connect these details because regulated payout providers need to identify their customers. Shielding the funding path does not hide the payout from the anchor.
+
+<Info>
+  If the simulated payout fails, the app may offer a private refund claim. Follow the on-screen recovery state and avoid starting a second claim for the same session.
+</Info>

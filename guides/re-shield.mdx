@@ -1,0 +1,44 @@
+---
+title: "Re-shield"
+description: "Replace a standard shielded note with a fresh note that is harder to connect to your deposit wallet."
+icon: "refresh-cw"
+---
+
+Re-shield replaces a standard-denomination note with a fresh note. It is intended to make your current spendable balance harder to connect to the wallet that made the original deposit.
+
+<Warning>
+  Re-shield does not erase the original public deposit. It also does not hide your IP address or request timing from the service operator.
+</Warning>
+
+## Re-shield a note
+
+<Steps>
+  <Step title="Open Re-shield">
+    Select **Re-shield** from the home screen. This action appears only when the current deployment supports it.
+  </Step>
+
+  <Step title="Choose an asset and note">
+    Select an available standard-denomination note. Swap outputs and shielded change may use non-standard amounts and might not be eligible.
+  </Step>
+
+  <Step title="Review the privacy explanation">
+    Confirm that you understand the original deposit remains visible and that re-shielding reduces links rather than removing them.
+  </Step>
+
+  <Step title="Create the replacement note">
+    Start the action and keep the page open. Your browser proves the note transition and tracks the replacement through confirmation.
+  </Step>
+</Steps>
+
+<Check>
+  A completed re-shield leaves you with a fresh note under the same shielded identity. Your public wallet does not receive the value during the replacement.
+</Check>
+
+## When re-shield is unavailable
+
+- You do not have a standard-denomination note.
+- Your balance consists only of swap outputs or shielded change.
+- The deployment has temporarily disabled the feature.
+- A prior attempt is still awaiting a final status.
+
+Use **Rescan** before retrying an interrupted action. Do not repeat the action while its status is uncertain.
