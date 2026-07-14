@@ -48,7 +48,7 @@ A shielded send moves one of your notes to another Confi.cash user. The recipien
 
 - Chain observers see that a valid pool action happened, but not the transferred amount or the recipient's public Stellar address.
 - The recipient can decrypt the note and see the asset and amount they received.
-- The service operator can observe request metadata such as IP address and timing.
+- The service operator can observe request metadata such as IP address and timing and associate the request with the public pool action it relays. It does not need your spend key or the plaintext transfer amount.
 
 <Warning>
   Verify a shielded address through a trusted channel. A valid proof cannot recover a note sent to the wrong `cb1...` address.

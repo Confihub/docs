@@ -4,9 +4,9 @@ description: "Use Confi.cash to swap through Soroswap, Aquarius, and other suppo
 icon: "arrow-right-left"
 ---
 
-Confi.cash lets you access **Soroswap**, **Aquarius**, and other supported Stellar AMMs from a shielded balance. You choose the external liquidity in **Others**, submit an amount-blind order, and receive the result as a fresh shielded note.
+Confi.cash lets you access **Soroswap**, **Aquarius**, and other supported Stellar AMMs from a shielded balance. You choose the external liquidity in **Others**, submit an amount-blind order, and receive the result as a fresh shielded note. Shared settlement hides your individual leg from chain observers; solo settlement does not.
 
-The selected AMM receives the aggregate batch net. It does not receive your individual shielded order as a standalone swap.
+In shared settlement, the selected AMM receives the aggregate batch net instead of your individual shielded order as a standalone swap. In solo settlement, your order is the batch net.
 
 <Warning>
   The amount-blind batch path does not send your plaintext amount to ordinary relay intake. Confi.cash operates the threshold committee and can reconstruct individual amounts with quorum-level administrative access. This is not privacy from Confi.cash itself.
@@ -15,7 +15,7 @@ The selected AMM receives the aggregate batch net. It does not receive your indi
 ## Why use Confi.cash with external AMMs
 
 - Access Soroswap, Aquarius, and other supported AMM routes from one shielded balance.
-- Keep your individual batched order amount hidden from public chain observers.
+- Keep your individual order amount hidden from public chain observers when it settles with other real orders in a shared batch.
 - Send only the combined batch net to the selected external AMM.
 - Receive the result as a new shielded note instead of automatically withdrawing to a public wallet.
 - Use the same shielded-note and amount-blind batch mechanism across supported venues.
@@ -51,7 +51,7 @@ The selected AMM receives the aggregate batch net. It does not receive your indi
   </Step>
 
   <Step title="Choose the privacy timing">
-    Use **Wait** when you want the order to join a later shared batch. Use **Trade now** only after reading the reduced-privacy warning shown by the app.
+    Use **Wait** when you want the order to join a later shared batch. **Trade now** uses solo settlement, so your amount and direction become inferable from the public batch net. Use it only after reading the warning shown by the app.
   </Step>
 
   <Step title="Generate and submit the proof">
@@ -70,7 +70,7 @@ The selected AMM receives the aggregate batch net. It does not receive your indi
 
 | Mode | What the chain sees | Privacy consequence |
 | --- | --- | --- |
-| Batched through Soroswap, Aquarius, or another AMM | The clearing price and combined batch net routed to that AMM | Your individual leg is hidden from chain observers; the threshold operator can reconstruct it with quorum access |
+| Shared batch with another real order through Soroswap, Aquarius, or another AMM | The clearing price and combined batch net routed to that AMM | Your individual leg is not directly published to chain observers, though inference may remain; the threshold operator can reconstruct it with quorum access |
 | Solo | Your order becomes the batch net | Your individual amount and direction become inferable from the public settlement |
 
 <Info>
