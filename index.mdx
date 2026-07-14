@@ -1,90 +1,84 @@
 ---
-title: "Confi.cash documentation"
-description: "Swap through Soroswap, Aquarius, and other Stellar AMMs from a shielded Confi.cash balance."
+title: "Introduction to Confi.cash"
+sidebarTitle: "Introduction"
+description: "Learn how Confi.cash adds shielded balances, transfers, batch swaps, and compliant payout flows to Stellar."
 icon: "shield"
 ---
 
-Confi.cash is a shielded route to Stellar liquidity. You can use a private balance to swap through **Soroswap**, **Aquarius**, and other supported AMMs without publishing your individual order amount on-chain.
-
-Your browser generates the zero-knowledge proof. Confi.cash combines eligible orders into an amount-blind batch, sends only the aggregate net to the selected AMM, and returns your proceeds as a fresh shielded note.
+Confi.cash is a non-custodial privacy protocol on Stellar. It lets you shield assets, transfer or batch-swap them with individual amounts and links hidden from public chain observers, then withdraw to a Stellar wallet or fund a compliant payout without publishing your complete prior wallet activity.
 
 <Warning>
   Confi.cash is an experimental testnet proof of concept. Do not use real funds. It has not been independently audited.
 </Warning>
 
-## Use Stellar AMMs through Confi.cash
+## Why Confi.cash exists
 
-<Columns cols={3}>
-  <Card title="Start shielded" icon="shield">
-    Deposit a standard testnet amount and hold it as a shielded note.
-  </Card>
+Public blockchains make transaction amounts, wallet relationships, and trading behavior easy to inspect. That transparency supports verification, but it can also expose treasury activity, payment flows, portfolio rebalancing, and trading strategy.
 
-  <Card title="Route to external AMMs" icon="route">
-    Choose **Others** to access Soroswap, Aquarius, and other supported Stellar AMM routes.
-  </Card>
+Stellar AMMs provide liquidity and price execution. They do not create a shielded balance layer or hide each user's swap amount. Confi.cash adds that privacy-preserving execution layer without creating a new bridge or taking custody of your spend keys.
 
-  <Card title="Stay shielded" icon="eye-off">
-    Only the batch net settles on the AMM. Your proceeds return as a fresh shielded note.
-  </Card>
-</Columns>
-
-<Info>
-  In the app, **Others** means external AMM liquidity. It currently includes **Soroswap** and **Aquarius** and can expand to other supported AMMs.
-</Info>
-
-## Start here
+## What you can do
 
 <Columns cols={2}>
-  <Card title="Swap through Soroswap and other AMMs" icon="arrow-right-left" href="/guides/swap">
-    Use **Others** to route a shielded swap through Soroswap, Aquarius, or another supported AMM.
+  <Card title="Hold and transfer shielded assets" icon="shield">
+    Create a shielded balance and send notes to another `cb1...` address without publishing the transfer amount on-chain.
   </Card>
 
-  <Card title="Complete your first testnet flow" icon="rocket" href="/quickstart">
-    Connect a wallet, create your shielded identity, and add a testnet balance.
+  <Card title="Swap through Stellar AMMs" icon="arrow-right-left" href="/guides/swap">
+    Batch-swap through **Soroswap**, **Aquarius**, and other supported AMMs while only the aggregate net flow reaches public liquidity.
   </Card>
 
-  <Card title="Understand the privacy model" icon="eye-off" href="/concepts/privacy-model">
-    See what is hidden, what remains public, and what the operator can observe.
+  <Card title="Withdraw to Stellar" icon="wallet-cards" href="/guides/cash-out">
+    Move a standard amount from the shielded pool to a public Stellar wallet when you need on-chain funds.
   </Card>
 
-  <Card title="Learn how it works" icon="blocks" href="/concepts/how-it-works">
-    Follow value from a public wallet into shielded notes and back out.
+  <Card title="Fund a compliant payout" icon="building-2" href="/guides/offramp">
+    Use a shielded balance to fund an anchor payout flow without exposing your complete prior wallet and swap history to the public chain.
   </Card>
-
 </Columns>
 
-## What Confi.cash protects
+## How it works
 
-- Your shielded balance does not appear beside your public Stellar address.
-- A shielded transfer sends a whole note to a `cb1...` address without publishing its amount.
-- A swap through Soroswap, Aquarius, or another supported AMM hides your individual leg from chain observers. Only the batch net settles publicly on the selected AMM.
-- Your spend keys and zero-knowledge proofs are created in your browser.
+Your browser creates the proofs and secrets needed to control your shielded notes. Soroban contracts verify note ownership, value conservation, nullifier freshness, valid batch clearing, and withdrawals without receiving your spend key.
 
-## What remains visible
-
-- Deposits and withdrawals cross a public boundary. Their address, asset, and amount are visible on-chain.
-- The chain shows that activity happened, when batches settled, the clearing price, and the batch net.
-- The active batch path encrypts individual swap amounts before relay intake, but Confi.cash operates the threshold committee and can reconstruct them with quorum-level administrative access.
-- The service operator can observe request metadata such as IP address and timing.
-- A solo swap makes your individual amount the public batch net.
+For a swap, Confi.cash groups eligible shielded orders and clears them at a shared batch price. Only the aggregate net flow is routed through an adapter to the selected public AMM. When you choose **Others** in the app, that external liquidity can come from **Soroswap**, **Aquarius**, or another supported Stellar AMM. Your proceeds return as a fresh shielded note.
 
 <Info>
-  Confi.cash provides amount confidentiality against chain observers. It does not promise complete anonymity, invisibility, or protection from the current service operator.
+  **Others** is a liquidity-route choice, not a separate privacy mode. The same batch privacy boundaries apply to every supported external AMM route.
 </Info>
 
-## Core actions
+## Compliant payouts
+
+The same shielded balance can fund an individual payout through a regulated Stellar anchor. The anchor performs the identity and destination checks required for its payout rail, then delivers fiat, mobile money, or another supported form of value.
+
+The public chain sees a withdrawal from the shielded pool to a destination assigned for that payout session. It does not receive a direct record of your internal transfers or individual swap history. The anchor still sees your identity, payout amount, destination, and session details, and public timing or amount correlation may reveal additional links.
+
+The current Confi.cash offramp is a testnet simulation. It does not deliver real fiat.
+
+## The privacy boundary
+
+Confi.cash is designed to hide shielded balances, internal transfer amounts, and individual batched swap legs from public chain observers. It does not make activity invisible.
+
+- Deposits and withdrawals remain public, including their asset and amount.
+- The chain records batch timing, clearing price, and aggregate net flow.
+- A solo swap makes the individual order equal to the public batch net.
+- The operator can observe network metadata such as IP address and timing.
+- Confi.cash operates the threshold committee and can reconstruct individual swap amounts with quorum-level administrative access.
+
+Read the [privacy model](/concepts/privacy-model) for the guarantees and trust assumptions for each participant.
+
+## Explore the protocol
 
 <Columns cols={3}>
-  <Card title="Swap through Stellar AMMs" icon="arrow-right-left" href="/guides/swap">
-    Access Soroswap, Aquarius, and other supported AMMs from your shielded balance.
+  <Card title="How Confi.cash works" icon="blocks" href="/concepts/how-it-works">
+    Follow value through shielded notes, browser proofs, batch settlement, and withdrawal.
   </Card>
 
-  <Card title="Add money" icon="circle-plus" href="/guides/add-money">
-    Move a standard testnet amount into your shielded balance.
+  <Card title="Privacy model" icon="eye-off" href="/concepts/privacy-model">
+    See what chain observers, AMMs, anchors, recipients, and the operator can learn.
   </Card>
 
-  <Card title="Send privately" icon="send" href="/guides/send">
-    Transfer a shielded note to another `cb1...` address.
+  <Card title="Create a shielded balance" icon="rocket" href="/quickstart">
+    Connect a testnet wallet, derive your shielded identity, and deposit a supported asset.
   </Card>
-
 </Columns>
