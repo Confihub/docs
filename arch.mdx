@@ -482,21 +482,6 @@ Mainnet deployment does not proceed until every hard gate below is resolved:
 8. Nullifier, batch, verifier, and instance archival restoration drills complete without losing replay protection or claim state.
 9. Soroswap routing passes the reviewed mainnet activation checks. Aquarius and the anchor remain disabled unless their separate activation conditions are satisfied.
 
-### Disclosed residual limitations
-
-The following limitations may remain at launch because they describe the chosen trust model rather than unfinished hardening:
-
-1. The committee is operated by one organisation, and a two-share quorum can reconstruct an individual order amount.
-2. The preferred v2 design does not prove committee aggregate honesty or each user’s price limit on-chain.
-3. The relayer observes request timing and network metadata.
-4. A batch capacity of eight is not a guarantee of eight independent participants.
-5. Soroswap, Aquarius, the asset issuer, and any anchor are third-party dependencies.
-6. XLM and classic issued assets require the destination account and asset prerequisites imposed by Stellar.
-7. Administrative upgrade authority remains a trust assumption until the documented one-way production freeze is executed.
-8. Long-term nullifier and verifier availability depends on keeper operation and tested restoration procedures.
-
-The independent review and launch report may document these residual limitations, but it cannot waive a hard launch gate.
-
 ---
 
 ## 13. Open-source and verification commitments
