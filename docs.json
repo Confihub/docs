@@ -22,7 +22,8 @@
         "pages": [
           "index",
           "concepts/how-it-works",
-          "concepts/privacy-model"
+          "concepts/privacy-model",
+          "arch"
         ]
       },
       {
